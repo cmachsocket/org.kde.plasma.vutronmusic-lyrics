@@ -1,8 +1,7 @@
 # Notice
-Now we recommend you to use this [repo](https://github.com/zsiothsu/org.kde.plasma.yesplaymusic-lyrics).
+Forked from [repo](https://github.com/LiYulin-s/org.kde.plasma.ypm-lyrics)
 
-# Requirement
-Need to run the [backend](https://github.com/LiYulin-s/ypm-lyrics-backend) before use this Plasmoid.
+由于VutronMusic一直没有KDE插件于是怒学一天qml来fork一个项目适配kde奈何kde寥寥无几的开发资料使我寸步难行最终拼尽全力还是无法战胜配置窗口
 
 # Installation
 ```sh
