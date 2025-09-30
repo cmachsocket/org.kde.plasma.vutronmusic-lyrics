@@ -57,19 +57,20 @@ PlasmoidItem {
                         for (var i in lyrics) {
                             let lrc_min = parseInt(lyrics[i].slice(1, 3))
                             let lrc_sec = parseFloat(lyrics[i].slice(4, 10))
-                            if (lrc_min * 60 + lrc_sec > current_time + config_time_offset) {
+                            if (lrc_min * 60 + lrc_sec > current_time + config_time_offset*0.001) {
                                 break
                             }
                         }
 
                         if (i !== 0) {
+                            //console.log(i)
                             lyric = lyrics[i - 1].slice(11)
                         }
                         if (cfg_translation === "enable"  && tlyrics[0] !== '') {
                             for (var j in tlyrics) {
                                 let tlrc_min = parseInt(tlyrics[j].slice(1, 3))
                                 let tlrc_sec = parseFloat(tlyrics[j].slice(4, 10))
-                                if (tlrc_min * 60 + tlrc_sec > current_time + config_time_offset) {
+                                if (tlrc_min * 60 + tlrc_sec > current_time + config_time_offset*0.001) {
                                     break
                                 }
                             }
