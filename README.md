@@ -8,6 +8,6 @@ Forked from [repo](https://github.com/LiYulin-s/org.kde.plasma.ypm-lyrics)
 # Installation
 ```sh
 $ git clone https://github.com/cmachsocket/org.kde.plasma.vutronmusic-lyrics.git
-$ cd org.kde.plasma.ypm-lyrics.git
+$ cd org.kde.plasma.ypm-lyrics
 $ kpackagetool6 -t Plasma/Applet -i .
 ```
