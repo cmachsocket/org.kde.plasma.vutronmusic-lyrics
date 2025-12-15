@@ -29,7 +29,14 @@
             <label>show translation for lyrics</label>
             <default>disable</default>
         </entry>
-
+        <entry name="max_width" type="int">
+            <label>set 0 as unlimited</label>
+            <default>0</default>
+        </entry>
+        <entry name="fixed_width" type="string">
+            <label>decide to fix width</label>
+            <default>disable</default>
+        </entry>
     </group>
 
 </kcfg>
