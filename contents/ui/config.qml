@@ -9,14 +9,14 @@ import org.kde.kcmutils as KCM
 KCM.SimpleKCM {
     id: config_page
 
-    property alias cfg_flush_time: config_flush_time.value
-    property alias cfg_max_width: config_max_width.value
+    property alias cfg_flush_time: flush_time.value
+    property alias cfg_max_width: max_width.value
     property alias cfg_text_color: text_color.selectedColor
     property alias cfg_text_font: text_font.selectedFont
-    property alias cfg_time_offset: config_time_offset.value
+    property alias cfg_time_offset: time_offset.value
     property alias cfg_translation: translation_text.text
     property alias cfg_fixed_width: fixed_width_label.text
-
+    property alias cfg_spacing: spacing.value
     height: childrenRect.height
     width: childrenRect.width
 
@@ -31,7 +31,7 @@ KCM.SimpleKCM {
         }
         QtLayouts.RowLayout {
             QtControls.SpinBox {
-                id: config_flush_time
+                id: flush_time
 
                 from: 10
                 stepSize: 10
@@ -49,7 +49,7 @@ KCM.SimpleKCM {
         }
         QtLayouts.RowLayout {
             QtControls.SpinBox {
-                id: config_time_offset
+                id: time_offset
 
                 from: -2000
                 stepSize: 500
@@ -151,7 +151,7 @@ KCM.SimpleKCM {
         }
         QtLayouts.RowLayout {
             QtControls.SpinBox {
-                id: config_max_width
+                id: max_width
                 from : 0
                 stepSize: 10
                 to: 10000
@@ -187,6 +187,24 @@ KCM.SimpleKCM {
 
                     onClicked: fixed_width_label.text = "enable"
                 }
+            }
+        }
+        /* row 6 */
+        QtControls.Label {
+            anchors.right: parent.center
+            text: i18n("spacing: ")
+        }
+        QtLayouts.RowLayout {
+            QtControls.SpinBox {
+                id: spacing
+
+                from: -10000
+                stepSize: 1
+                to: 10000
+                value: cfg_spacing
+            }
+            QtControls.Label {
+                text: i18n("to adjust the spacing between two lines")
             }
         }
     }

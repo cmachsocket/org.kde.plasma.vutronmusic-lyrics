@@ -37,6 +37,10 @@
             <label>decide to fix width</label>
             <default>disable</default>
         </entry>
+        <entry name="spacing" type="int">
+            <label>adjust spacing</label>
+            <default>0</default>
+        </entry>
     </group>
 
 </kcfg>
