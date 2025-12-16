@@ -5,9 +5,16 @@ Forked from [repo](https://github.com/LiYulin-s/org.kde.plasma.ypm-lyrics)
 
 配置窗口的代码参考了[这里](https://github.com/zsiothsu/org.kde.plasma.yesplaymusic-lyrics)
 
-# Installation
-```sh
-$ git clone https://github.com/cmachsocket/org.kde.plasma.vutronmusic-lyrics.git
-$ cd org.kde.plasma.ypm-lyrics
-$ kpackagetool6 -t Plasma/Applet -i .
+
+## Installation:
+
+```bash
+git clone https://github.com/cmachsocket/qtodo.git
+cd qtodo
+make install # use 'make clean' to uninstall
 ```
+or you can copy the folder to `~/.local/share/plasma/plasmoids/` manually.
+
+## update:
+
+2025-12-16 : 添加了最大窗口大小和固定窗口大小的选项，并修复了歌词在前奏的时候仍然显示上一句歌词的问题。现在可以通过make命令来管理插件的安装和卸载。
