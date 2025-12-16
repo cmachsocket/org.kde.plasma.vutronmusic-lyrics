@@ -9,7 +9,7 @@ import org.kde.plasma.components as PlasmaComponents
 PlasmoidItem {
     readonly property string config_fixed_width: Plasmoid.configuration.fixed_width
     readonly property int config_max_width: Plasmoid.configuration.max_width
-    readonly property int config_spacing: Plasmoid.configuration.spacing
+    readonly property int config_offset: Plasmoid.configuration.offset
     readonly property string config_text_color: Plasmoid.configuration.text_color
     readonly property string config_text_font: Plasmoid.configuration.text_font
     readonly property int config_time_offset: Plasmoid.configuration.time_offset
@@ -17,11 +17,10 @@ PlasmoidItem {
     readonly property int config_update_time: Plasmoid.configuration.update_time
 
     Plasmoid.backgroundHints: PlasmaCore.Types.NoBackground
-    anchors.fill: parent
-    anchors.margins: 0
-    preferredRepresentation: fullRepresentation
 
-    fullRepresentation: ColumnLayout {
+    preferredRepresentation: compactRepresentation
+
+    compactRepresentation: MouseArea {
         id: fullRep
 
         property string lyric_first: ""
@@ -75,32 +74,34 @@ PlasmoidItem {
         Layout.maximumWidth: config_max_width > 0 ? config_max_width : -1
         Layout.minimumWidth: (config_max_width > 0 && config_fixed_width !== "disable") ? config_max_width : -1
         Layout.preferredWidth: lyric_label_first.implicitWidth
-        anchors.fill: parent
         anchors.margins: 0
-        spacing: config_spacing
 
         //Layout.
         Label {
             id: lyric_label_first
-
-            Layout.maximumWidth: config_max_width > 0 ? config_max_width : -1
-            Layout.minimumWidth: (config_max_width > 0 && config_fixed_width !== "disable") ? config_max_width : -1
+            y:config_offset
+            Layout.fillWidth: true
+            width: parent.width
+            clip: true
             color: config_text_color
             elide: Text.ElideRight
             font: config_text_font || PlasmaCore.Theme.textColor
             horizontalAlignment: Text.AlignHCenter
+            padding: 0
             text: fullRep.lyric_first
             verticalAlignment: Text.AlignVCenter
         }
         Label {
             id: lyric_label_secondary
-
-            Layout.maximumWidth: config_max_width > 0 ? config_max_width : -1
-            Layout.minimumWidth: (config_max_width > 0 && config_fixed_width !== "disable") ? config_max_width : -1
+            Layout.fillWidth: true
+            width: parent.width
+            clip: true
+            anchors.top: lyric_label_first.bottom
             color: config_text_color
             elide: Text.ElideRight
             font: config_text_font || PlasmaCore.Theme.textColor
             horizontalAlignment: Text.AlignHCenter
+            padding: 0
             text: fullRep.lyric_secondary
             verticalAlignment: Text.AlignVCenter
         }
@@ -113,6 +114,12 @@ PlasmoidItem {
             onTriggered: {
                 update();
             }
+        }
+    }
+    fullRepresentation: Item {
+        // Empty full representation
+        Label {
+            text: ""
         }
     }
 }
