@@ -113,7 +113,7 @@ PlasmoidItem {
         }
         Label {
             id: lyric_label_secondary
-
+            visible: config_translation === "enable" && fullRep.lyric_secondary !== ""
             Layout.maximumWidth: {
                 if (config_max_width > 0) {
                     if (config_fixed_width !== "disable") {
