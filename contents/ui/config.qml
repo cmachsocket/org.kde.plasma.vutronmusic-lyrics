@@ -16,7 +16,7 @@ KCM.SimpleKCM {
     property alias cfg_time_offset: time_offset.value
     property alias cfg_translation: translation_text.text
     property alias cfg_fixed_width: fixed_width_label.text
-    property alias cfg_offset: offset.value
+    property alias cfg_vertical_offset: vertical_offset.value
     height: childrenRect.height
     width: childrenRect.width
 
@@ -192,19 +192,19 @@ KCM.SimpleKCM {
         /* row 6 */
         QtControls.Label {
             anchors.right: parent.center
-            text: i18n("offset: ")
+            text: i18n("vertical_offset: ")
         }
         QtLayouts.RowLayout {
             QtControls.SpinBox {
-                id: offset
+                id: vertical_offset
 
                 from: -10000
                 stepSize: 1
                 to: 10000
-                value: cfg_offset
+                value: cfg_vertical_offset
             }
             QtControls.Label {
-                text: i18n("to adjust the offset on the vertical direction")
+                text: i18n("to adjust the vertical_offset between two lines")
             }
         }
     }

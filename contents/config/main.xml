@@ -23,7 +23,7 @@
 
         <entry name="text_font" type="string">
             <label>config lyrics' font family.</label>
-            <default></default>
+            <default>0</default>
         </entry>
         <entry name="translation" type="string">
             <label>show translation for lyrics</label>
@@ -37,8 +37,8 @@
             <label>decide to fix width</label>
             <default>disable</default>
         </entry>
-        <entry name="offset" type="int">
-            <label>adjust offset</label>
+        <entry name="vertical_offset" type="int">
+            <label>adjust vertical_offset</label>
             <default>0</default>
         </entry>
     </group>
