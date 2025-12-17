@@ -11,7 +11,7 @@ Forked from [repo](https://github.com/LiYulin-s/org.kde.plasma.ypm-lyrics)
 手动安装：
 
 ```bash
-git clone https://github.com/cmachsocket/plasma6-applets-vutronmusic-lyrics.git
+git clone https://github.com/cmachsocket/org.kde.plasma.vutronmusic-lyrics.git
 cd qtodo
 make install # use 'make clean' to uninstall
 ```
