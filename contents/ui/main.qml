@@ -69,6 +69,9 @@ PlasmoidItem {
                                 lyric_secondary = tlyrics[j - 1].slice(11);
                             }
                         }
+                        else {
+                            lyric_secondary = "";
+                        }
                     }
                 }
             };
