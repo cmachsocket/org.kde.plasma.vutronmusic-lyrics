@@ -73,6 +73,10 @@ PlasmoidItem {
                             lyric_secondary = "";
                         }
                     }
+                    else {
+                        console.log("Error: " + xhr.status);
+                        lyric_first = lyric_secondary = "";
+                    }
                 }
             };
         }
