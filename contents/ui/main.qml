@@ -15,6 +15,7 @@ PlasmoidItem {
     readonly property string config_translation: Plasmoid.configuration.translation
     readonly property int config_update_time: Plasmoid.configuration.update_time
     readonly property int config_vertical_offset: Plasmoid.configuration.vertical_offset
+    readonly property int config_port: Plasmoid.configuration.port
 
     Plasmoid.backgroundHints: PlasmaCore.Types.NoBackground
     preferredRepresentation: fullRepresentation
@@ -30,7 +31,7 @@ PlasmoidItem {
 
         function update() {
             let xhr = new XMLHttpRequest();
-            xhr.open("GET", "http://localhost:41830/local-asset/player");
+            xhr.open("GET", "http://localhost:" + config_port + "/local-asset/player");
             xhr.send();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
@@ -41,7 +42,9 @@ PlasmoidItem {
                         let current_time = res.data.progress;
                         let lyrics = res.data.lyric.lrc.split("\n");
                         let tlyrics = res.data.lyric.tlyric.split("\n");
-                        for (var i = 0; i < lyrics.length; i++) {
+                        let romalrcs = res.data.lyric.romalrc.split("\n");
+                        let i = 0;
+                        for (; i < lyrics.length; i++) {
                             let lrc_min = parseInt(lyrics[i].slice(1, 3));
                             let lrc_sec = parseFloat(lyrics[i].slice(4, 10));
                             if (lrc_min * 60 + lrc_sec > current_time + config_time_offset * 0.001) {
@@ -57,8 +60,9 @@ PlasmoidItem {
                             lyric_first = lyric_secondary = "";
                             return ;
                         }
-                        if (config_translation === "enable" && tlyrics[0] !== '') {
-                            for (var j = 0; j < tlyrics.length; j++) {
+                        if (config_translation === "translation" && tlyrics[0] !== '') {
+                            let j = 0;
+                            for (; j < tlyrics.length; j++) {
                                 let tlrc_min = parseInt(tlyrics[j].slice(1, 3));
                                 let tlrc_sec = parseFloat(tlyrics[j].slice(4, 10));
                                 if (tlrc_min * 60 + tlrc_sec > current_time + config_time_offset * 0.001) {
@@ -67,6 +71,19 @@ PlasmoidItem {
                             }
                             if (j !== 0) {
                                 lyric_secondary = tlyrics[j - 1].slice(11);
+                            }
+                        }
+                        else if (config_translation === "romaji" && romalrcs[0] !== '') {
+                            let j = 0;
+                            for (; j < romalrcs.length; j++) {
+                                let tlrc_min = parseInt(romalrcs[j].slice(1, 3));
+                                let tlrc_sec = parseFloat(romalrcs[j].slice(4, 10));
+                                if (tlrc_min * 60 + tlrc_sec > current_time + config_time_offset * 0.001) {
+                                    break;
+                                }
+                            }
+                            if (j !== 0) {
+                                lyric_secondary = romalrcs[j - 1].slice(11);
                             }
                         }
                         else {
@@ -120,7 +137,7 @@ PlasmoidItem {
         }
         Label {
             id: lyric_label_secondary
-            visible: config_translation === "enable" && fullRep.lyric_secondary !== ""
+            visible: config_translation !== "disable" && fullRep.lyric_secondary !== ""
             Layout.maximumWidth: {
                 if (config_max_width > 0) {
                     if (config_fixed_width !== "disable") {

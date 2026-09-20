@@ -17,6 +17,7 @@ KCM.SimpleKCM {
     property alias cfg_translation: translation_text.text
     property alias cfg_fixed_width: fixed_width_label.text
     property alias cfg_vertical_offset: vertical_offset.value
+    property alias cfg_port: port.value
     height: childrenRect.height
     width: childrenRect.width
 
@@ -36,7 +37,7 @@ KCM.SimpleKCM {
                 from: 10
                 stepSize: 10
                 to: 2000
-                value: cfg_flush_time
+                value: config_page.cfg_flush_time
             }
             QtControls.Label {
                 text: i18n("ms (0~2000ms)")
@@ -54,7 +55,7 @@ KCM.SimpleKCM {
                 from: -2000
                 stepSize: 500
                 to: 2000
-                value: cfg_time_offset
+                value: config_page.cfg_time_offset
             }
             QtControls.Label {
                 text: i18n("ms (-2000~2000ms)")
@@ -96,18 +97,18 @@ KCM.SimpleKCM {
             QtControls.Button {
                 id: font_button
 
-                text: cfg_text_font || i18n("default")
+                text: config_page.cfg_text_font || i18n("default")
 
                 onClicked: text_font.open()
             }
             FontDialog {
                 id: text_font
 
-                selectedFont: cfg_text_font
+                selectedFont: config_page.cfg_text_font
 
                 onAccepted: {
                     font_button.text = text_font.selectedFont;
-                    cfg_text_font = text_font.selectedFont;
+                    config_page.cfg_text_font = text_font.selectedFont;
                     text_font.close();
                 }
                 onRejected: {
@@ -119,7 +120,7 @@ KCM.SimpleKCM {
         QtControls.Label {
             id: second_language_layout
 
-            text: i18n("translation: ")
+            text: i18n("Second Line: ")
         }
         QtLayouts.RowLayout {
             QtControls.Label {
@@ -127,20 +128,30 @@ KCM.SimpleKCM {
 
                 visible: false
             }
+            QtControls.ButtonGroup {
+                id: buttonGroup
+                exclusive: true   // true=单选，false=可多选
+            }
             Column {
                 id: second_language_column
 
                 QtControls.RadioButton {
+                    QtControls.ButtonGroup.group: buttonGroup
                     checked: (translation_text.text === text) || (translation_text.text === "")
                     text: "disable"
-
                     onClicked: translation_text.text = "disable"
                 }
                 QtControls.RadioButton {
+                    QtControls.ButtonGroup.group: buttonGroup
                     checked: translation_text.text === text
-                    text: "enable"
-
-                    onClicked: translation_text.text = "enable"
+                    text: "translation"
+                    onClicked: translation_text.text = "translation"
+                }
+                QtControls.RadioButton {
+                    QtControls.ButtonGroup.group: buttonGroup
+                    checked: translation_text.text === text
+                    text: "romaji"
+                    onClicked: translation_text.text = "romaji"
                 }
             }
         }
@@ -155,7 +166,7 @@ KCM.SimpleKCM {
                 from : 0
                 stepSize: 10
                 to: 10000
-                value: cfg_max_width
+                value: config_page.cfg_max_width
             }
             QtControls.Label {
                 text: i18n("set 0 as unlimited")
@@ -189,7 +200,7 @@ KCM.SimpleKCM {
                 }
             }
         }
-        /* row 6 */
+        /* row 8 */
         QtControls.Label {
             anchors.right: parent.center
             text: i18n("vertical_offset: ")
@@ -201,10 +212,27 @@ KCM.SimpleKCM {
                 from: -10000
                 stepSize: 1
                 to: 10000
-                value: cfg_vertical_offset
+                value: config_page.cfg_vertical_offset
             }
             QtControls.Label {
                 text: i18n("to adjust the vertical_offset between two lines")
+            }
+        }
+        /* row 9 */
+        QtControls.Label {
+            anchors.right: parent.center
+            text: i18n("port: ")
+        }
+        QtLayouts.RowLayout {
+            QtControls.SpinBox {
+                id: port
+                from : 0
+                stepSize: 1
+                to: 65535
+                value: config_page.cfg_port
+            }
+            QtControls.Label {
+                text: i18n("set 0 as unlimited")
             }
         }
     }

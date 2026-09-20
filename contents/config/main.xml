@@ -41,6 +41,10 @@
             <label>adjust vertical_offset</label>
             <default>0</default>
         </entry>
+        <entry name="port" type="int">
+            <label>config port for lyrics server</label>
+            <default>41830</default>
+        </entry>
     </group>
 
 </kcfg>
