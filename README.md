@@ -34,3 +34,5 @@ yay -S plasma6-applets-vutronmusic-lyrics
 2026-8-19 : 修复了vutronmusic退出后歌词仍然显示的问题
 
 2026-9-20 : 添加了端口设置选项，添加了罗马音选项
+
+2026-10-08 : 使用正则表达式匹配歌词
