@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "data": {
+    "progress": 60.479,
+    "playing": false,
+    "volume": 1.0,
+    "currentTrack": {
+      "id": "1811314693",
+      "name": "Pole Star",
+      "ar": [{ "id": null, "name": "Motorama" }],
+      "al": {
+        "id": null,
+        "name": "Before The Road",
+        "picUrl": "https://p3.music.126.net/Kid9PEL8YrjWn1MzxeQQzQ==/109951172241361843.jpg"
+      },
+      "dt": 191160
+    },
+    "isLiked": true,
+    "repeatMode": "off",
+    "lyric": {
+      "lrc": "[00:11.951]Give me the time of the date\n[00:16.105]Before the Arctic dawn\n[00:23.576]The shine will never end\n[00:27.625]For both sides of the world\n[00:35.174]It will bring us together\n[00:39.067]Through the snow and storm\n[00:46.564]It will bring us together\n[00:50.404]On our long road home\n[00:57.352]Pole star\n[01:00.487]North Pole star\n[01:03.752]Pole star\n[01:06.312]North Pole star\n[01:09.290]Pole star\n[01:11.929]North Pole star\n[01:14.985]Pole star\n[01:17.702]North Pole star\n[01:21.098]In the depth of ice mirrors\n[01:24.755]Before the Arctic dawn\n[01:32.304]In the mix of the feelings\n[01:36.196]On all sides of the world\n[01:55.161]It will bring us together\n[01:58.897]On our long road home\n[02:06.551]Pole star\n[02:09.058]North Pole star\n[02:12.089]Pole star\n[02:14.701]North Pole star\n[02:17.731]Pole star\n[02:20.369]North Pole star\n[02:23.426]Pole star\n[02:26.142]North Pole star\n",
+      "tlyric": "[00:11.951]告诉我会面的时间\n[00:16.105]在北极黎明前\n[00:23.576]阳光永远不会消失\n[00:27.625]在世界的两端\n[00:35.174]它会让我们一起\n[00:39.067]穿过风雪\n[00:46.564]它会让我们一起\n[00:50.404]踏上漫漫回家路\n[00:57.352]极星\n[01:00.487]北极星\n[01:03.752]极星\n[01:06.312]北极星\n[01:09.290]极星\n[01:11.929]北极星\n[01:14.985]极星\n[01:17.702]北极星\n[01:21.098]在冰面深处\n[01:24.755]北极黎明前\n[01:32.304]纷杂情绪中\n[01:36.196]世界的各个角落\n[01:55.161]它会带我们一起\n[01:58.897]踏上漫漫回家路\n[02:06.551]极星\n[02:09.058]北极星\n[02:12.089]极星\n[02:14.701]北极星\n[02:17.731]极星\n[02:20.369]北极星\n[02:23.426]极星\n[02:26.142]北极星\n",
+      "romalrc": ""
+    }
+  }
+}

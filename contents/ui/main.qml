@@ -45,70 +45,69 @@ PlasmoidItem {
                         let romalrcs = res.data.lyric.romalrc.split("\n");
                         let i = 0;
                         for (; i < lyrics.length; i++) {
-                            let lrc_min = parseInt(lyrics[i].slice(1, 3));
-                            let lrc_sec = parseFloat(lyrics[i].slice(4, 10));
-                            if (lrc_min * 60 + lrc_sec > current_time + config_time_offset * 0.001) {
+                            let v = parseLine(lyrics[i]);
+                            if (v.totalSeconds > current_time + config_time_offset * 0.001) {
                                 break;
                             }
                         }
                         if (i !== 0) {
                             console.log("i:" + i);
                             console.log("lyrics length:" + lyrics.length);
-                            lyric_first = lyrics[i - 1].slice(11);
-                        }
-                        else{
+                            lyric_first = parseLine(lyrics[i - 1]).content;
+                        } else {
                             lyric_first = lyric_secondary = "";
-                            return ;
+                            return;
                         }
                         if (config_translation === "translation" && tlyrics[0] !== '') {
                             let j = 0;
                             for (; j < tlyrics.length; j++) {
-                                let tlrc_min = parseInt(tlyrics[j].slice(1, 3));
-                                let tlrc_sec = parseFloat(tlyrics[j].slice(4, 10));
-                                if (tlrc_min * 60 + tlrc_sec > current_time + config_time_offset * 0.001) {
+                                let v = parseLine(tlyrics[j]);
+                                if (v.totalSeconds > current_time + config_time_offset * 0.001) {
                                     break;
                                 }
                             }
                             if (j !== 0) {
-                                lyric_secondary = tlyrics[j - 1].slice(11);
+                                lyric_secondary = parseLine(tlyrics[j - 1]).content;
                             }
-                        }
-                        else if (config_translation === "romaji" && romalrcs[0] !== '') {
+                        } else if (config_translation === "romaji" && romalrcs[0] !== '') {
                             let j = 0;
                             for (; j < romalrcs.length; j++) {
-                                let tlrc_min = parseInt(romalrcs[j].slice(1, 3));
-                                let tlrc_sec = parseFloat(romalrcs[j].slice(4, 10));
-                                if (tlrc_min * 60 + tlrc_sec > current_time + config_time_offset * 0.001) {
+                                let v = parseLine(romalrcs[j]);
+                                if (v.totalSeconds > current_time + config_time_offset * 0.001) {
                                     break;
                                 }
                             }
                             if (j !== 0) {
-                                lyric_secondary = romalrcs[j - 1].slice(11);
+                                lyric_secondary = parseLine(romalrcs[j - 1]).content;
                             }
-                        }
-                        else {
+                        } else {
                             lyric_secondary = "";
                         }
-                    }
-                    else {
+                    } else {
                         console.log("Error: " + xhr.status);
                         lyric_first = lyric_secondary = "";
                     }
                 }
             };
         }
+        function parseLine(line) {
+            // 匹配 [整数:小数] 后面的内容
+            var re = /^\[(\d+):(\d+(?:\.\d+)?)\](.*)$/;
+            var m = line.match(re);
+            if (!m)
+                return null;
 
-        // Layout.maximumWidth: {
-        //     if (config_max_width > 0) {
-        //         if (config_fixed_width !== "disable") {
-        //             return config_max_width;
-        //         }
-        //         return Math.min(config_max_width, Math.max(lyric_label_first.implicitWidth, lyric_label_secondary.implicitWidth));
-        //     } else {
-        //         return -1;
-        //     }
-        // }
-        // Layout.minimumWidth: (config_max_width > 0 && config_fixed_width !== "disable") ? config_max_width : -1
+            var minute = parseInt(m[1], 10);      // 整数部分，如 00 -> 0
+            var second = parseFloat(m[2]);        // 小数部分，如 11.951
+            var content = m[3];                   // ] 之后的内容
+
+            return {
+                minute: minute,
+                second: second,
+                content: content,
+                totalSeconds: minute * 60 + second
+            };
+        }
         anchors.fill: parent
         anchors.topMargin: config_vertical_offset
         spacing: 0
